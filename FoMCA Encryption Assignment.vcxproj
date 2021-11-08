@@ -70,7 +70,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FoMCA Encryption Original.cpp" />
+    <ClCompile Include="FoMCA Assignment - C1002132 MOORHOUSE, FINN - MS.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="log.txt" />

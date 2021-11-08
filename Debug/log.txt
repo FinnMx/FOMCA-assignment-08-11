@@ -1,0 +1,78 @@
+Date: 05/11/2021 Time: 16:00:45
+Name:                  Your Name Goes Here
+Encryption Routine ID: '-1'
+Encryption Key:        '?
+
+Original string  = aaaaaa Hex = 61 61 61 61 61 61 
+
+Encrypted string = bbbbbb Hex = 62 62 62 62 62 62 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 05/11/2021 Time: 16:00:47
+Name:                  Your Name Goes Here
+Encryption Routine ID: '-1'
+Encryption Key:        '?
+
+Original string  = aaaaaa Hex = 61 61 61 61 61 61 
+
+Encrypted string = bbbbbb Hex = 62 62 62 62 62 62 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 05/11/2021 Time: 16:01:21
+Name:                  Your Name Goes Here
+Encryption Routine ID: '-1'
+Encryption Key:        '?
+
+Original string  = bbbbbb Hex = 62 62 62 62 62 62 
+
+Encrypted string = cccccc Hex = 63 63 63 63 63 63 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 05/11/2021 Time: 16:24:44
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = AAAAAA Hex = 41 41 41 41 41 41 
+
+Encrypted string = jÄ⁄è⁄ Hex = 6a 80 da 08 8f da 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 05/11/2021 Time: 16:24:47
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = AAAAAA Hex = 41 41 41 41 41 41 
+
+Encrypted string = jÄ⁄è⁄ Hex = 6a 80 da 08 8f da 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 05/11/2021 Time: 16:25:47
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = AAAAAA Hex = 41 41 41 41 41 41 
+
+Encrypted string = jÄ⁄è⁄ Hex = 6a 80 da 08 8f da 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+

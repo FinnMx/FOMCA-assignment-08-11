@@ -41,12 +41,13 @@ char decrypted_chars[MAX_CHARS] = "Soon!";                   // Decrypted charac
 /// <param name="a_character">the resultant character, pass by reference</param>
 void get_char (char& a_character)
 {
-    
-  a_character = (char)_getwche (); // https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/getche-getwche
+   char a = (char)_getwche();
 
-  __asm { //convert uppercase entries to lower case. 
-           OR a_character, 020h // ORS the ascii value to keep or add the 1 to make a number lower case
-    }
+   __asm { //convert uppercase entries to lower case. 
+		 OR a, 020h // ORS the ascii value to keep or add the 32 to make a number lower case
+   }
+
+  a_character = a; // https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/getche-getwche
 
   if (a_character == STRING_TERMINATOR) // skip further checks if user entered string terminating character
   {
@@ -81,6 +82,8 @@ void encrypt_chars (int length, char EKey)
                                      // Note the lamentable lack of comments below!
     __asm
     {
+
+
       push   eax                     // pushes eax, ecx & edx into the stack to recall later
       push   ecx                     // **
       push   edx                     // **
@@ -91,8 +94,8 @@ void encrypt_chars (int length, char EKey)
       mov    temp_char, dl           // moves the 8 bits of EDX into temp_char
 
       pop    edx                     // pops (restores) eax, acx & edx from the stack
-      pop    ecx                     //
-      pop    eax                     //
+      pop    ecx                     // **
+      pop    eax                     // **
     
     
     }
@@ -118,6 +121,7 @@ void encrypt_chars (int length, char EKey)
 
           push  esi
           push  ecx
+
           mov   esi, eax
           and dword ptr[esi], 0xFF
           ror   byte ptr[esi], 1
@@ -132,6 +136,7 @@ void encrypt_chars (int length, char EKey)
           add   eax, 0x20
           xor  eax, 0xAA
           mov   edx, eax
+
           pop   esi
 
           ret

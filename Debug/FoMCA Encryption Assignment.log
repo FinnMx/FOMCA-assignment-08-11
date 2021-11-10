@@ -1,2 +1,4 @@
 ﻿  FoMCA Assignment - C1002132 MOORHOUSE, FINN - MS.cpp
+c:\users\finn\documents\github\fomca-assignment-08-11\fomca assignment - c1002132 moorhouse, finn - ms.cpp(123): warning C4731: 'encrypt_chars': frame pointer register 'ebp' modified by inline assembly code
+c:\users\finn\documents\github\fomca-assignment-08-11\fomca assignment - c1002132 moorhouse, finn - ms.cpp(149): warning C4731: 'encrypt_chars': frame pointer register 'ebp' modified by inline assembly code
   FoMCA Encryption Assignment.vcxproj -> C:\Users\Finn\Documents\GitHub\FOMCA-assignment-08-11\Debug\FoMCA Encryption Assignment.exe

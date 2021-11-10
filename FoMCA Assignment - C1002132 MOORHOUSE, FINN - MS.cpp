@@ -41,18 +41,11 @@ char decrypted_chars[MAX_CHARS] = "Soon!";                   // Decrypted charac
 /// <param name="a_character">the resultant character, pass by reference</param>
 void get_char (char& a_character)
 {
-	/*
-   char a = (char)_getwche();
-
-   __asm { //convert uppercase entries to lower case. 
-	   OR a , 020h // ORS the ascii value to keep or add the 32 to make a number lower case
-   }
-   */
 
    a_character = (char)_getwche(); // https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/getche-getwche
 
    __asm {
-	   OR BYTE PTR[ecx], 020h // ORS the ascii value to keep or add the 32 to make a number lower case
+	   OR BYTE PTR[ecx], 020h // ORS the ascii value stored in the address at ecx (which happens to be the referenced variable) to keep or add the 32 to make a number lower case
    }
 
    
@@ -96,7 +89,7 @@ void encrypt_chars (int length, char EKey)
       push   edx                     // **
 
       lea    eax, EKey               // loads the variable EKEY which is B into the eax register
-      movzx  ecx, temp_char          // moves the 32 bit value of temp char into ecx with zero extend
+      movzx  ecx, temp_char          // moves the 4 bit value of temp char into ecx with zero extend so 32 bits
       call   encrypt_17              // subroutine encrypt 17 is called
       mov    temp_char, dl           // moves the 8 bits of EDX into temp_char
 
@@ -126,25 +119,35 @@ void encrypt_chars (int length, char EKey)
   {
   encrypt_17:
 
-          push  esi
+	      push  ebp // push base pointer to return to later blah blah standard stuff
+		  mov   ebp, esp // set new base pointer 
+	     
+          push  esi //push values onto stack
           push  ecx
 
-          mov   esi, eax
+          mov   esi, eax                         // 'encryption' routine mangles the char to be encrypted and returns it in edx
           and   dword ptr[esi], 0xFF
           ror   byte ptr[esi], 1
           ror   byte ptr[esi], 1
           add   byte ptr[esi], 0x01
           mov   ecx, [esi]
           pop   edx
-          x17 : ror   dl, 1
-          dec   ecx
-          jnz   x17
+
+          x17 : ror   dl, 1                     // could just set ecx to zero, all its doing is 
+          dec   ecx                             //do{
+          jnz   x17                             //   ecx -1
+												//} while(ecx > 0)
           mov   eax, edx
-          add   eax, 0x20
+          add   eax, 0x20                       // could do lea fast addition O.O makes those two lines a single instruction
           xor   eax, 0xAA
           mov   edx, eax
 
+		  pop   ecx
           pop   esi
+
+		  mov   esp,ebp
+		  pop   ebp
+		  
 
           ret
   }

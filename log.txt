@@ -453,3 +453,29 @@ Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00
 
 -------------------------------------------------------------
 
+Date: 10/11/2021 Time: 13:37:50
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = cunttt Hex = 63 75 6e 74 74 74 
+
+Encrypted string = {a¢[— Hex = 7b 61 11 a2 5b 97 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 14:09:44
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = h(ello Hex = 68 28 65 6c 6c 6f 
+
+Encrypted string = þËÓR{Q Hex = fe cb d3 52 7b 51 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+

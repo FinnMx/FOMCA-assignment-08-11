@@ -102,3 +102,354 @@ Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00
 
 -------------------------------------------------------------
 
+Date: 09/11/2021 Time: 22:28:24
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = helloo Hex = 68 65 6c 6c 6f 6f 
+
+Encrypted string = þá‘RwQ Hex = fe e1 91 52 77 51 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 09/11/2021 Time: 23:12:58
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = hELLOO Hex = 68 45 4c 4c 4f 4f 
+
+Encrypted string = þà™÷Y Hex = fe e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 09/11/2021 Time: 23:13:19
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = aHELL Hex = 61 08 48 45 4c 4c 
+
+Encrypted string =    zÊ˜ Hex = 7a ca 98 00 fb 99 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 09/11/2021 Time: 23:13:26
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLLO Hex = 48 45 4c 4c 4c 4f 
+
+Encrypted string = îà™ûY Hex = ee e0 99 12 fb 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 09/11/2021 Time: 23:18:10
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 09/11/2021 Time: 23:19:56
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 09/11/2021 Time: 23:23:17
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 09/11/2021 Time: 23:31:43
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 09/11/2021 Time: 23:35:30
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 09/11/2021 Time: 23:36:00
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 09/11/2021 Time: 23:36:09
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 09/11/2021 Time: 23:42:33
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 09/11/2021 Time: 23:52:27
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 09/11/2021 Time: 23:53:38
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 00:02:05
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = helloo Hex = 68 65 6c 6c 6f 6f 
+
+Encrypted string = þá‘RwQ Hex = fe e1 91 52 77 51 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 00:02:15
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = helloo Hex = 68 65 6c 6c 6f 6f 
+
+Encrypted string = þá‘RwQ Hex = fe e1 91 52 77 51 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 00:02:58
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 00:03:12
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  =        Hex = 00 00 00 00 00 00 
+
+Encrypted string = ŠŠŠŠŠŠ Hex = 8a 8a 8a 8a 8a 8a 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 00:03:17
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  =        Hex = 00 00 00 00 00 00 
+
+Encrypted string = ŠŠŠŠŠŠ Hex = 8a 8a 8a 8a 8a 8a 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 00:03:26
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 00:03:57
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 00:04:50
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 00:14:03
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = HELLOO Hex = 48 45 4c 4c 4f 4f 
+
+Encrypted string = îà™÷Y Hex = ee e0 99 12 f7 59 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 00:21:44
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = helloo Hex = 68 65 6c 6c 6f 6f 
+
+Encrypted string = þá‘RwQ Hex = fe e1 91 52 77 51 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 01:27:04
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = hellow Hex = 68 65 6c 6c 6f 77 
+
+Encrypted string = þá‘RwW Hex = fe e1 91 52 77 57 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 01:27:09
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = helloo Hex = 68 65 6c 6c 6f 6f 
+
+Encrypted string = þá‘RwQ Hex = fe e1 91 52 77 51 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+
+Date: 10/11/2021 Time: 01:27:14
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = coontt Hex = 63 6f 6f 6e 74 74 
+
+Encrypted string = {1QV[— Hex = 7b 31 51 56 5b 97 
+
+Decrypted string =  Soon! Hex = 53 6f 6f 6e 21 00 
+
+-------------------------------------------------------------
+

@@ -41,15 +41,22 @@ char decrypted_chars[MAX_CHARS] = "Soon!";                   // Decrypted charac
 /// <param name="a_character">the resultant character, pass by reference</param>
 void get_char (char& a_character)
 {
+	/*
    char a = (char)_getwche();
 
    __asm { //convert uppercase entries to lower case. 
-		 OR a, 020h // ORS the ascii value to keep or add the 32 to make a number lower case
+	   OR a , 020h // ORS the ascii value to keep or add the 32 to make a number lower case
+   }
+   */
+
+   a_character = (char)_getwche(); // https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/getche-getwche
+
+   __asm {
+	   OR BYTE PTR[ecx], 020h // ORS the ascii value to keep or add the 32 to make a number lower case
    }
 
-  a_character = a; // https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/getche-getwche
-
-  if (a_character == STRING_TERMINATOR) // skip further checks if user entered string terminating character
+   
+   if (a_character == STRING_TERMINATOR) // skip further checks if user entered string terminating character
   {
     return;
   }
@@ -123,7 +130,7 @@ void encrypt_chars (int length, char EKey)
           push  ecx
 
           mov   esi, eax
-          and dword ptr[esi], 0xFF
+          and   dword ptr[esi], 0xFF
           ror   byte ptr[esi], 1
           ror   byte ptr[esi], 1
           add   byte ptr[esi], 0x01
@@ -134,7 +141,7 @@ void encrypt_chars (int length, char EKey)
           jnz   x17
           mov   eax, edx
           add   eax, 0x20
-          xor  eax, 0xAA
+          xor   eax, 0xAA
           mov   edx, eax
 
           pop   esi
@@ -178,6 +185,7 @@ void get_original_chars (int& length)
   {
     next_char = 0;
     get_char (next_char);
+
     if (next_char != STRING_TERMINATOR)
     {
       original_chars [length++] = next_char;

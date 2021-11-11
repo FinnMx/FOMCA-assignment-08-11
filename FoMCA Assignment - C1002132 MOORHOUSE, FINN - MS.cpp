@@ -18,18 +18,18 @@
 
 
 
-constexpr char const * STUDENT_NAME = "Finn Moorhouse"; // Replace with your full name
+constexpr char const * STUDENT_NAME = "Finn Moorhouse";      // Replace with your full name
 constexpr int ENCRYPTION_ROUTINE_ID = 17;                    // Replace -1 with your encryption id
 constexpr char ENCRYPTION_KEY = 'B';                         // Replace '?' with your encryption key
 constexpr int MAX_CHARS = 6;                                 // feel free to alter this, but must be 6 when submitting!
 
 constexpr char STRING_TERMINATOR = '$';                      // custom string terminator
-constexpr char LINE_FEED_CHARACTER = '\n';                   // line feed character (hhhmmm, this comment seems a bit unnecassary...)
+constexpr char LINE_FEED_CHARACTER = '\n';                   
 constexpr char CARRIAGE_RETURN_CHARACTER = '\r';             // carriage return character
 
 char original_chars[MAX_CHARS];                              // Original character string
 char encrypted_chars[MAX_CHARS];                             // Encrypted character string
-char decrypted_chars[MAX_CHARS] = "Soon!";                   // Decrypted character string, don't forget to delete default value when testing your decryption!
+char decrypted_chars[MAX_CHARS];                             // Decrypted character string
 
 
 //---------------------------------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ void encrypt_chars (int length, char EKey)
     temp_char = original_chars [i];  // Get the next char from original_chars array
     
                                      
-                                     // Note the lamentable lack of comments below!
+                                     
     __asm
     {
 
@@ -105,27 +105,21 @@ void encrypt_chars (int length, char EKey)
 
   return;
 
-  // Encrypt subroutine. You should paste in the encryption routine you've been allocated from BB and
-  // overwrite this initial, simple, version. Ensure you change the ‘call’ above to use the
-  // correct 'encrypt_nn' label where nn is your encryption routine number.
-
   // Inputs: register EAX = 32-bit address of Ekey
   //                  ECX = the character to be encrypted (in the low 8-bit field, CL)
   // Output: register EDX = the encrypted value of the source character (in the low 8-bit field, DL)
-
-  // REMEMBER TO UPDATE THESE COMMENTS AS YOU DO THE ASSIGNMENT. DELETE OLD/STALE COMMENTS.
 
   __asm
   {
   encrypt_17:
 
-	      push  ebp // push base pointer to return to later blah blah standard stuff
-		  mov   ebp, esp // set new base pointer 
+	      push  ebp                             // push base pointer to return to later blah blah standard stuff
+		  mov   ebp, esp                        // set new base pointer 
 	     
-          push  esi //push values onto stack
+          push  esi                             //push values onto stack
           push  ecx
 
-          mov   esi, eax                         // 'encryption' routine mangles the char to be encrypted and returns it in edx
+          mov   esi, eax                        // 'encryption' routine mangles the char to be encrypted and returns it in edx
           and   dword ptr[esi], 0xFF
           ror   byte ptr[esi], 1
           ror   byte ptr[esi], 1
@@ -152,8 +146,14 @@ void encrypt_chars (int length, char EKey)
           ret
   }
 }
+
+
+
 //*** end of encrypt_chars function
 //---------------------------------------------------------------------------------------------------------------
+
+
+
 
 //---------------------------------------------------------------------------------------------------------------
 //----------------- DECRYPTION ROUTINE --------------------------------------------------------------------------
@@ -166,7 +166,49 @@ void encrypt_chars (int length, char EKey)
 /// <param name="EKey">encryption key to used during the encryption process, pass by value</param>
 void decrypt_chars (int length, char EKey)
 {
-  /*** To be written by you ***/
+
+	char temp_char;       // Temporary character store
+
+
+	for (int i = 0; i < length; ++i)   // Encrypt characters one at a time
+	{
+		temp_char = encrypted_chars[i];  // Get the next char from encrypted_chars array
+ 									 
+		__asm
+		{
+
+
+			push   eax                     // pushes eax, ecx & edx into the stack to recall later
+			push   ecx                     // **
+			push   edx                     // **
+
+			lea    eax, EKey               // loads the variable EKEY which is B into the eax register
+			movzx  ecx, temp_char          // moves the 4 bit value of temp char into ecx with zero extend so 32 bits
+			call   decrypt_17              // subroutine encrypt 17 is called
+			mov    temp_char, dl           // moves the 8 bits of EDX into temp_char
+
+			pop    edx                     // pops (restores) eax, acx & edx from the stack
+			pop    ecx                     // **
+			pop    eax                     // **
+
+
+		}
+
+		decrypted_chars[i] = temp_char; // Store encrypted char in the encrypted_chars array
+	}
+
+	return;
+
+	__asm
+	{
+	decrypt_17:
+
+
+
+
+
+	}
+
 }
 //*** end of decrypt_chars function
 //---------------------------------------------------------------------------------------------------------------

@@ -106,7 +106,7 @@ void encrypt_chars (int length, char EKey)
   return;
 
   // Inputs: register EAX = 32-bit address of Ekey
-  //                  ECX = the character to be encrypted (in the low 8-bit field, CL)
+  //                  ECX = the character to be encrypted (in the low 8-bit field, CL) (it actually serves more as a counter for the loop)
   // Output: register EDX = the encrypted value of the source character (in the low 8-bit field, DL)
 
   __asm
@@ -117,26 +117,26 @@ void encrypt_chars (int length, char EKey)
 		  mov   ebp, esp                        // set new base pointer 
 	     
           push  esi                             //push values onto stack
-          push  ecx
+          push  ecx                             // **
 
-          mov   esi, eax                        // 'encryption' routine mangles the char to be encrypted and returns it in edx
-          and   dword ptr[esi], 0xFF
+          mov   esi, eax                        // routine to mess up the EKEY and create a mangled one in ecx (this is always the same no matter what the chars entered are)
+          and   dword ptr[esi], 0xFF            // 
           ror   byte ptr[esi], 1
           ror   byte ptr[esi], 1
           add   byte ptr[esi], 0x01
-          mov   ecx, [esi]
-          pop   edx
+          mov   ecx, [esi]                      
+          pop   edx                             // puts the ascii of the char to be encrypted in edx
 
-          x17 : ror   dl, 1                     // could just set ecx to zero, all its doing is 
-          dec   ecx                             //do{
-          jnz   x17                             //   ecx -1
+          x17 : ror   dl, 1                     // rotates dl by 1 until ecx = 0 
+          dec   ecx                             //do{ ror dl,1
+          jnz   x17                             //   --ecx
 												//} while(ecx > 0)
           mov   eax, edx
-          add   eax, 0x20                       // could do lea fast addition O.O makes those two lines a single instruction
+          add   eax, 0x20                       // could do lea fast addition makes those two lines a single instruction
           xor   eax, 0xAA
-          mov   edx, eax
+          mov   edx, eax                        // eax then gets put into edx after its mangled
 
-		  pop   ecx
+		  pop   ecx                             // everything gets restored
           pop   esi
 
 		  mov   esp,ebp
@@ -184,12 +184,13 @@ void decrypt_chars (int length, char EKey)
 
 			lea    eax, EKey               // loads the variable EKEY which is B into the eax register
 			movzx  ecx, temp_char          // moves the 4 bit value of temp char into ecx with zero extend so 32 bits
-			call   decrypt_17              // subroutine encrypt 17 is called
+			call   decrypt_17              // subroutine decrypt 17 is called
 			mov    temp_char, dl           // moves the 8 bits of EDX into temp_char
 
-			pop    edx                     // pops (restores) eax, acx & edx from the stack
+			pop    edx                     // pops (restores) eax, ecx & edx from the stack
 			pop    ecx                     // **
 			pop    eax                     // **
+
 
 
 		}
@@ -203,9 +204,36 @@ void decrypt_chars (int length, char EKey)
 	{
 	decrypt_17:
 
+			push  ebp                             // push base pointer to return to later blah blah standard stuff
+			mov   ebp, esp                        // set new base pointer 
 
+			push  esi                             //push values onto stack
+			push  ecx                             // **
 
+			mov   edx, ecx                        // puts the encrypted char into edx
 
+			mov   esi, eax                        // routine to mess up the EKEY and create a mangled one in ecx (this is always the same no matter what the chars entered are)
+			and   dword ptr[esi], 0xFF            // 
+			ror   byte ptr[esi], 1
+			ror   byte ptr[esi], 1
+			add   byte ptr[esi], 0x01
+			mov   ecx, [esi]
+
+			xor   edx, 0xAA                         // undo the last two encryption operations
+			sub   edx, 0x20
+
+			d17 : rol dl, 1                         // inverse of the loop to encrypt, gets the final value
+			dec ecx
+			jnz d17
+			
+
+			pop   ecx                             // everything gets restored
+			pop   esi
+
+			mov   esp, ebp
+			pop   ebp
+
+			ret
 
 	}
 

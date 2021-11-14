@@ -88,10 +88,10 @@ void encrypt_chars (int length, char EKey)
       push   ecx                     // **
       push   edx                     // **
 
-      lea    eax, EKey               // loads the variable EKEY which is B into the eax register
+      lea    eax, EKey               // loads the address of EKEY which is B initially into the eax register
       movzx  ecx, temp_char          // moves the 4 bit value of temp char into ecx with zero extend so 32 bits
       call   encrypt_17              // subroutine encrypt 17 is called
-      mov    temp_char, dl           // moves the 8 bits of EDX into temp_char
+      mov    temp_char, dl           // moves the ascii value into temp_char
 
       pop    edx                     // pops (restores) eax, acx & edx from the stack
       pop    ecx                     // **
@@ -119,7 +119,7 @@ void encrypt_chars (int length, char EKey)
           push  esi                             //push values onto stack
           push  ecx                             // **
 
-          mov   esi, eax                        // routine to mess up the EKEY and create a mangled one in ecx (this is always the same no matter what the chars entered are)
+          mov   esi, eax                        // routine to mess up the EKEY and create a mangled one in ecx (this is always the same no matter what the chars entered 1st pass: 91, 2nd: 65, 3rd: 5A, 5th: e6, 6th: BA)
           and   dword ptr[esi], 0xFF            // 
           ror   byte ptr[esi], 1
           ror   byte ptr[esi], 1
@@ -127,14 +127,14 @@ void encrypt_chars (int length, char EKey)
           mov   ecx, [esi]                      
           pop   edx                             // puts the ascii of the char to be encrypted in edx
 
-          x17 : ror   dl, 1                     // rotates dl by 1 until ecx = 0 
+          x17 : ror   dl, 1                     // rotates dl by 1 until the mangled EKEY = 0 
           dec   ecx                             //do{ ror dl,1
           jnz   x17                             //   --ecx
 												//} while(ecx > 0)
           mov   eax, edx
-          add   eax, 0x20                       // could do lea fast addition makes those two lines a single instruction
+          add   eax, 0x20                       // whats the point of moving into eax
           xor   eax, 0xAA
-          mov   edx, eax                        // eax then gets put into edx after its mangled
+          mov   edx, eax                        // eax then gets put into edx after its 'mangled'
 
 		  pop   ecx                             // everything gets restored
           pop   esi
@@ -182,10 +182,10 @@ void decrypt_chars (int length, char EKey)
 			push   ecx                     // **
 			push   edx                     // **
 
-			lea    eax, EKey               // loads the variable EKEY which is B into the eax register
+			lea    eax, EKey               // loads the address of EKEY which is B initially into the eax register
 			movzx  ecx, temp_char          // moves the 4 bit value of temp char into ecx with zero extend so 32 bits
 			call   decrypt_17              // subroutine decrypt 17 is called
-			mov    temp_char, dl           // moves the 8 bits of EDX into temp_char
+			mov    temp_char, dl           // moves the ascii value into temp_char
 
 			pop    edx                     // pops (restores) eax, ecx & edx from the stack
 			pop    ecx                     // **
@@ -200,6 +200,15 @@ void decrypt_chars (int length, char EKey)
 
 	return;
 
+
+	// --------------------------------------------------------------------------------------- //
+	// -------------------------------DECRYPTION ALGORITHM------------------------------------ //
+	// PRACTICALLY ALL THE ENCRYPTION DOES IS TAKE THE INITAL HEX VALUE OF THE ASCII LETTER 'B'//
+	// MANGLES IT WITH THE SAME OPERATION AND CONTINUES TO MANGLE THAT ON EACH PASS THE SAME   //
+	// EXACT WAY. THE EKEY IS ALSO BASICALLY JUST A COUNTER... SO ALL WE REALLY NEED TO DO TO  //
+	// 'DECRYPT' IS IMPLEMENT THE SAME COUNTER BUT REVERSE THE LOOP AND THE FINAL ADD AND XOR  //
+	// --------------------------------------------------------------------------------------- //
+	// --------------------------------------------------------------------------------------- //
 	__asm
 	{
 	decrypt_17:
@@ -212,20 +221,20 @@ void decrypt_chars (int length, char EKey)
 
 			mov   edx, ecx                        // puts the encrypted char into edx
 
-			mov   esi, eax                        // routine to mess up the EKEY and create a mangled one in ecx (this is always the same no matter what the chars entered are)
+			mov   esi, eax                        // routine to mess up the EKEY and create a mangled one in ecx (i reused this as its needed for the inverse of the 'while loop' and the counter stays the same)
 			and   dword ptr[esi], 0xFF            // 
 			ror   byte ptr[esi], 1
 			ror   byte ptr[esi], 1
 			add   byte ptr[esi], 0x01
-			mov   ecx, [esi]
+			mov   ecx, [esi]                      // put the mangled ekey into ecx
 
-			xor   edx, 0xAA                         // undo the last two encryption operations
+			xor   edx, 0xAA                       // undo the last two 'encryption' operations before the loop
 			sub   edx, 0x20
 
-			d17 : rol dl, 1                         // inverse of the loop to encrypt, gets the final value
-			dec ecx
-			jnz d17
-			
+			d17 : rol dl, 1                       // inverse of the loop to encrypt, gets the final value (using the same counter)
+			dec ecx                               // do { rol dl, 1
+			jnz d17                               //   --ecx
+			                                      // } while(ecx > 0);
 
 			pop   ecx                             // everything gets restored
 			pop   esi

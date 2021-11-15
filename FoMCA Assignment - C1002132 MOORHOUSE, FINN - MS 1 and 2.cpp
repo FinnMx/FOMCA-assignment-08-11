@@ -146,13 +146,8 @@ void encrypt_chars (int length, char EKey)
           ret
   }
 }
-
-
-
 //*** end of encrypt_chars function
 //---------------------------------------------------------------------------------------------------------------
-
-
 
 
 //---------------------------------------------------------------------------------------------------------------
@@ -209,6 +204,8 @@ void decrypt_chars (int length, char EKey)
 	// 'DECRYPT' IS IMPLEMENT THE SAME COUNTER BUT REVERSE THE LOOP AND THE FINAL ADD AND XOR  //
 	// --------------------------------------------------------------------------------------- //
 	// --------------------------------------------------------------------------------------- //
+
+
 	__asm
 	{
 	decrypt_17:
@@ -232,10 +229,9 @@ void decrypt_chars (int length, char EKey)
 			sub   edx, 0x20
 
 			d17 : rol dl, 1                       // inverse of the loop to encrypt, gets the final value (using the same counter)
-			dec ecx                               // do { rol dl, 1
-			jnz d17                               //   --ecx
+			dec   ecx                             // do { rol dl, 1
+			jnz   d17                             //   --ecx
 			                                      // } while(ecx > 0);
-
 			pop   ecx                             // everything gets restored
 			pop   esi
 
@@ -249,9 +245,6 @@ void decrypt_chars (int length, char EKey)
 }
 //*** end of decrypt_chars function
 //---------------------------------------------------------------------------------------------------------------
-
-
-
 
 
 //************ MAIN *********************************************************************************************

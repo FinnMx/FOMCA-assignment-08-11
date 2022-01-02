@@ -570,3 +570,120 @@ Decrypted string = cunttt Hex = 63 75 6e 74 74 74
 
 -------------------------------------------------------------
 
+Date: 02/01/2022 Time: 18:11:20
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = cunttt Hex = 63 75 6e 74 74 74 
+
+Encrypted string = {a¢[ó Hex = 7b 61 11 a2 5b 97 
+
+Decrypted string = cunttt Hex = 63 75 6e 74 74 74 
+
+-------------------------------------------------------------
+
+Date: 02/01/2022 Time: 18:23:47
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = cunttt Hex = 63 75 6e 74 74 74 
+
+Encrypted string = {a¢[ó Hex = 7b 61 11 a2 5b 97 
+
+Decrypted string = cunttt Hex = 63 75 6e 74 74 74 
+
+-------------------------------------------------------------
+
+Date: 02/01/2022 Time: 18:24:02
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = aaaaaa Hex = 61 61 61 61 61 61 
+
+Encrypted string = zÅ“H“ Hex = 7a 81 d2 48 0f d2 
+
+Decrypted string = aaaaaa Hex = 61 61 61 61 61 61 
+
+-------------------------------------------------------------
+
+Date: 02/01/2022 Time: 18:24:07
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = aaaaaa Hex = 61 61 61 61 61 61 
+
+Encrypted string = zÅ“H“ Hex = 7a 81 d2 48 0f d2 
+
+Decrypted string = aaaaaa Hex = 61 61 61 61 61 61 
+
+-------------------------------------------------------------
+
+Date: 02/01/2022 Time: 18:27:09
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = cunttt Hex = 63 75 6e 74 74 74 
+
+Encrypted string = {a¢[ó Hex = 7b 61 11 a2 5b 97 
+
+Decrypted string = cunttt Hex = 63 75 6e 74 74 74 
+
+-------------------------------------------------------------
+
+Date: 02/01/2022 Time: 18:29:09
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = xdxddd Hex = 78 64 78 64 64 64 
+
+Encrypted string = ˆÈîBì Hex = f6 e9 94 42 1b 93 
+
+Decrypted string = 444444 Hex = 34 34 34 34 34 34 
+
+-------------------------------------------------------------
+
+Date: 02/01/2022 Time: 18:29:18
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = xdxdxd Hex = 78 64 78 64 78 64 
+
+Encrypted string = ˆÈîB´ì Hex = f6 e9 94 42 ab 93 
+
+Decrypted string = ¸¸¸¸¸¸ Hex = fc fc fc fc fc fc 
+
+-------------------------------------------------------------
+
+Date: 02/01/2022 Time: 18:29:33
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = xdxdxd Hex = 78 64 78 64 78 64 
+
+Encrypted string = ˆÈîB´ì Hex = f6 e9 94 42 ab 93 
+
+Decrypted string = xdxdxd Hex = 78 64 78 64 78 64 
+
+-------------------------------------------------------------
+
+Date: 02/01/2022 Time: 18:32:43
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = cunttt Hex = 63 75 6e 74 74 74 
+
+Encrypted string = {a¢[ó Hex = 7b 61 11 a2 5b 97 
+
+Decrypted string = cunttt Hex = 63 75 6e 74 74 74 
+
+-------------------------------------------------------------
+

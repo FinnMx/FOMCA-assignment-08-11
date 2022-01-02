@@ -82,16 +82,25 @@ void encrypt_chars (int length, char EKey)
     {
 
 
-      push   eax                     // pushes EAX, ECX & EDX into the stack to recall later, saves current state so we can now use these registers freely
+      push   eax                     // pushes EAX, ECX & EDX into the stack to recall later, saves current state so we can now use these registers freely in our own code
       push   ecx                     // **
       push   edx                     // **
 
+
       lea    eax, EKey               // loads the address of EKEY which is B initially into the eax register
       movzx  ecx, temp_char          // moves the 4 byte value of temp char into ecx
+
+	  push   edx                     // pushing our registers onto the stack to retrieve in the subroutine
+	  push   ecx
+	  push   eax
+
       call   encrypt_17              // subroutine encrypt 17 is called
+	  add    esp, 12                 // stack is scrubbed
 
 
-      mov    temp_char, dl           // moves the ascii value into temp_char
+      mov    temp_char, dl           // moves the ascii value stored in eax into temp_char ( i didnt want to edit this line so i redundently did the same thing witht he eax because its part of cdecl?)
+	  mov    temp_char, al
+
 
       pop    edx                     // pops (restores) the values of EAX, ECX & EDX from the stack
       pop    ecx                     // **
@@ -115,6 +124,10 @@ void encrypt_chars (int length, char EKey)
 
 	      push  ebp                             // Push the base pointer onto the stack to return to later and restore previous state
 		  mov   ebp, esp                        // set new base pointer 
+
+		  mov   eax,[ebp + 0x08]                // recall the values we pushed and put them into corrosponding registers
+		  mov   ecx,[ebp + 0x0C]                //
+		  mov   edx,[ebp + 0x10]                //
 	     
           push  esi                             //push values onto stack
           push  ecx                             // **
@@ -136,10 +149,9 @@ void encrypt_chars (int length, char EKey)
           xor   eax, 0xAA						//
           mov   edx, eax                        //
 
-		  mov   eax, edx					    // put back into EAX to return, quite redundant
-
-		  pop   ecx                             // everything gets restored
+		  pop   ecx                             
           pop   esi
+
 
 		  mov   esp,ebp
           pop   ebp
@@ -175,14 +187,23 @@ void decrypt_chars (int length, char EKey)
 		{
 
 
-          push   eax                     // pushes eax, ecx & edx into the stack to recall later
+          push   eax                     // pushes EAX, ECX & EDX into the stack to recall later, saves current state so we can now use these registers freely in our own code
 		  push   ecx                     // **
 		  push   edx                     // **
 
 		  lea    eax, EKey               // loads the address of EKEY which is B initially into the eax register
-		  movzx  ecx, temp_char          // moves the 4 bit value of temp char into ecx with zero extend so 32 bits
+		  movzx  ecx, temp_char          // moves the 4 byte value of temp char into ecx
+
+		  push   edx                     // pushing our registers onto the stack to retrieve in the subroutine
+		  push   ecx
+		  push   eax
+
+
 		  call   decrypt_17              // subroutine decrypt 17 is called
-		  mov    temp_char, dl           // moves the ascii value into temp_char
+		  add    esp, 12                 // stack is scrubbed
+
+		  mov    temp_char, dl           // moves the ascii value stored in eax into temp_char ( i didnt want to edit this line so i redundently did the same thing with the eax because its part of cdecl?)
+		  mov    temp_char, al
 
 		  pop    edx                     // pops (restores) eax, ecx & edx from the stack
 		  pop    ecx                     // **
@@ -218,33 +239,41 @@ void decrypt_chars (int length, char EKey)
 	{
 	decrypt_17:
 
-          push   ebp                             // push base pointer to return to later blah blah standard stuff
-		  mov    ebp, esp                        // set new base pointer 
+          push  ebp                             // Push the base pointer onto the stack to return to later and restore previous state
+		  mov   ebp, esp                        // set new base pointer 
 
-		  push   esi                             //push values onto stack
-		  push   ecx                             // **
+	      mov   eax, [ebp + 0x08]               // recall the values we pushed and put them into the corrosponding registers
+		  mov   ecx, [ebp + 0x0C]               //
+		  mov   edx, [ebp + 0x10]               //
 
-		  mov    edx, ecx                        // puts the encrypted char into edx
+		  push  esi                             //push values onto stack
+		  push  ecx                             // **
 
-		  mov    esi, eax                        // routine to mess up the EKEY and create a mangled one in ecx (i reused this as its needed for the inverse of the 'while loop' and the counter stays the same)
-		  and    dword ptr[esi], 0xFF            // 
-		  ror    byte ptr[esi], 1
-		  ror    byte ptr[esi], 1
-		  add    byte ptr[esi], 0x01
-		  mov    ecx, [esi]                      // put the mangled ekey into ecx
+		  mov   edx, ecx                        // puts the encrypted char into edx
 
-		  xor    edx, 0xAA                       // undo the last two 'encryption' operations before the loop
-		  sub    edx, 0x20
+		  mov   esi, eax                        // routine to mess up the EKEY and create a mangled one in ecx (i reused this as its needed for the inverse of the 'while loop' and the counter stays the same)
+		  and   dword ptr[esi], 0xFF            // 
+		  ror   byte ptr[esi], 1
+		  ror   byte ptr[esi], 1
+		  add   byte ptr[esi], 0x01
+		  mov   ecx, [esi]                      // put the mangled ekey into ecx
 
-		  d17  : rol dl, 1                       // inverse of the loop to encrypt, gets the final value (using the same counter)
-		  dec    ecx                             // do { rol dl, 1
-		  jnz    d17                             //   --ecx
-			                                     // } while(ecx > 0);
-		  pop    ecx                             // everything gets restored
-		  pop    esi
+		  xor   edx, 0xAA                       // undo the last two 'encryption' operations before the loop
+		  sub   edx, 0x20
+		  
 
-		  mov    esp, ebp
-		  pop    ebp
+		  d17 : rol dl, 1                       // inverse of the loop to encrypt, gets the final value (using the same counter)
+		  dec   ecx                             // do { rol dl, 1
+		  jnz   d17                             //   --ecx
+			                                    // } while(ecx > 0);
+
+	      mov   eax, edx						// store the result in eax to return, cdecl
+
+		  pop   ecx                             // everything gets restored
+		  pop   esi
+
+		  mov   esp, ebp
+		  pop   ebp
 
 		  ret
 

@@ -1,9 +1,9 @@
-// The text encryption program in C++ and ASM with a very simple example encryption method - it simply adds 1 to the character.
-// The encryption method is written in ASM. You will replace this with your allocated version for the assignment.
-// In this version parameters are passed via registers (see 'encrypt' for details).
+//
+// FoMCA Assignment - C1002132 MOORHOUSE, FINN - MS 1 and 2.cpp
 //
 // Original Author: A.Oram - 2012
-// Last revised: A.Hamilton - Sep 204832758273793275790327599475437583475632858362895689600000091
+// Last revised: A.Hamilton - Sept 2021/22
+// Modified By: Finn Moorhouse - 2021/22
 
 
 #include <string>     // for std::string
@@ -18,10 +18,10 @@
 
 
 
-constexpr char const * STUDENT_NAME = "Finn Moorhouse";      // Replace with your full name
-constexpr int ENCRYPTION_ROUTINE_ID = 17;                    // Replace -1 with your encryption id
-constexpr char ENCRYPTION_KEY = 'B';                         // Replace '?' with your encryption key
-constexpr int MAX_CHARS = 6;                                 // feel free to alter this, but must be 6 when submitting!
+constexpr char const * STUDENT_NAME = "Finn Moorhouse";      // Full Name
+constexpr int ENCRYPTION_ROUTINE_ID = 17;                    // My Encryption 'ID'
+constexpr char ENCRYPTION_KEY = 'B';                         // My Encryption 'Key'
+constexpr int MAX_CHARS = 6;                                 // Max Chars inputted/outputted
 
 constexpr char STRING_TERMINATOR = '$';                      // custom string terminator
 constexpr char LINE_FEED_CHARACTER = '\n';                   
@@ -72,28 +72,28 @@ void get_char (char& a_character)
 /// <param name="EKey">encryption key to use during encryption, pass by value</param>
 void encrypt_chars (int length, char EKey)
 {
-  char temp_char;                    // Temporary character store
+  char temp_char;                    
 
-  for (int i = 0; i < length; ++i)   // Encrypt characters one at a time
+  for (int i = 0; i < length; ++i)   // Begin to Encrypt characters one at a time
   {
-    temp_char = original_chars [i];  // Get the next char from original_chars array
-    
-                                     
+    temp_char = original_chars [i];  // Store the next char                                        
                                      
     __asm
     {
 
 
-      push   eax                     // pushes eax, ecx & edx into the stack to recall later
+      push   eax                     // pushes EAX, ECX & EDX into the stack to recall later, saves current state so we can now use these registers freely
       push   ecx                     // **
       push   edx                     // **
 
       lea    eax, EKey               // loads the address of EKEY which is B initially into the eax register
-      movzx  ecx, temp_char          // moves the 4 bit value of temp char into ecx with zero extend so 32 bits
+      movzx  ecx, temp_char          // moves the 4 byte value of temp char into ecx
       call   encrypt_17              // subroutine encrypt 17 is called
+
+
       mov    temp_char, dl           // moves the ascii value into temp_char
 
-      pop    edx                     // pops (restores) eax, acx & edx from the stack
+      pop    edx                     // pops (restores) the values of EAX, ECX & EDX from the stack
       pop    ecx                     // **
       pop    eax                     // **
     
@@ -113,34 +113,36 @@ void encrypt_chars (int length, char EKey)
   {
   encrypt_17:
 
-	      push  ebp                             // push base pointer to return to later blah blah standard stuff
+	      push  ebp                             // Push the base pointer onto the stack to return to later and restore previous state
 		  mov   ebp, esp                        // set new base pointer 
 	     
           push  esi                             //push values onto stack
           push  ecx                             // **
 
-          mov   esi, eax                        // routine to mess up the EKEY and create a mangled one in ecx (this is always the same no matter what the chars entered 1st pass: 91, 2nd: 65, 3rd: 5A, 5th: e6, 6th: BA)
+          mov   esi, eax                        // routine to mess up the EKEY and create a mangled one in ECX (this is always the same no matter what the chars entered 1st pass: 91, 2nd: 65, 3rd: 5A, 5th: E6, 6th: BA)
           and   dword ptr[esi], 0xFF            // 
           ror   byte ptr[esi], 1
           ror   byte ptr[esi], 1
           add   byte ptr[esi], 0x01
           mov   ecx, [esi]                      
-          pop   edx                             // puts the ascii of the char to be encrypted in edx
+          pop   edx                             // puts the ascii of the char to be encrypted in EDX
 
           x17 : ror   dl, 1                     // rotates dl by 1 until the mangled EKEY = 0 
           dec   ecx                             //do{ ror dl,1
           jnz   x17                             //   --ecx
 												//} while(ecx > 0)
           mov   eax, edx
-          add   eax, 0x20                       // whats the point of moving into eax
-          xor   eax, 0xAA
-          mov   edx, eax                        // eax then gets put into edx after its 'mangled'
+          add   eax, 0x20                       // The Char to be encrypted is then moved into EAX, some more mangling, then put back into EDX
+          xor   eax, 0xAA						//
+          mov   edx, eax                        //
+
+		  mov   eax, edx					    // put back into EAX to return, quite redundant
 
 		  pop   ecx                             // everything gets restored
           pop   esi
 
 		  mov   esp,ebp
-		  pop   ebp
+          pop   ebp
 		  
 
           ret
@@ -173,18 +175,18 @@ void decrypt_chars (int length, char EKey)
 		{
 
 
-			push   eax                     // pushes eax, ecx & edx into the stack to recall later
-			push   ecx                     // **
-			push   edx                     // **
+          push   eax                     // pushes eax, ecx & edx into the stack to recall later
+		  push   ecx                     // **
+		  push   edx                     // **
 
-			lea    eax, EKey               // loads the address of EKEY which is B initially into the eax register
-			movzx  ecx, temp_char          // moves the 4 bit value of temp char into ecx with zero extend so 32 bits
-			call   decrypt_17              // subroutine decrypt 17 is called
-			mov    temp_char, dl           // moves the ascii value into temp_char
+		  lea    eax, EKey               // loads the address of EKEY which is B initially into the eax register
+		  movzx  ecx, temp_char          // moves the 4 bit value of temp char into ecx with zero extend so 32 bits
+		  call   decrypt_17              // subroutine decrypt 17 is called
+		  mov    temp_char, dl           // moves the ascii value into temp_char
 
-			pop    edx                     // pops (restores) eax, ecx & edx from the stack
-			pop    ecx                     // **
-			pop    eax                     // **
+		  pop    edx                     // pops (restores) eax, ecx & edx from the stack
+		  pop    ecx                     // **
+		  pop    eax                     // **
 
 
 
@@ -195,6 +197,12 @@ void decrypt_chars (int length, char EKey)
 
 	return;
 
+	/// <summary>
+	/// 'decrypt' the characters in encrypted_chars, up to length
+	/// output 'decrypted' characters in to decrypted_chars
+	/// </summary>
+	/// <param name="length">length of string to decrypt, pass by value</param>
+	/// <param name="EKey">encryption key to used during the encryption process, pass by value</param>
 
 	// --------------------------------------------------------------------------------------- //
 	// -------------------------------DECRYPTION ALGORITHM------------------------------------ //
@@ -210,35 +218,35 @@ void decrypt_chars (int length, char EKey)
 	{
 	decrypt_17:
 
-			push  ebp                             // push base pointer to return to later blah blah standard stuff
-			mov   ebp, esp                        // set new base pointer 
+          push   ebp                             // push base pointer to return to later blah blah standard stuff
+		  mov    ebp, esp                        // set new base pointer 
 
-			push  esi                             //push values onto stack
-			push  ecx                             // **
+		  push   esi                             //push values onto stack
+		  push   ecx                             // **
 
-			mov   edx, ecx                        // puts the encrypted char into edx
+		  mov    edx, ecx                        // puts the encrypted char into edx
 
-			mov   esi, eax                        // routine to mess up the EKEY and create a mangled one in ecx (i reused this as its needed for the inverse of the 'while loop' and the counter stays the same)
-			and   dword ptr[esi], 0xFF            // 
-			ror   byte ptr[esi], 1
-			ror   byte ptr[esi], 1
-			add   byte ptr[esi], 0x01
-			mov   ecx, [esi]                      // put the mangled ekey into ecx
+		  mov    esi, eax                        // routine to mess up the EKEY and create a mangled one in ecx (i reused this as its needed for the inverse of the 'while loop' and the counter stays the same)
+		  and    dword ptr[esi], 0xFF            // 
+		  ror    byte ptr[esi], 1
+		  ror    byte ptr[esi], 1
+		  add    byte ptr[esi], 0x01
+		  mov    ecx, [esi]                      // put the mangled ekey into ecx
 
-			xor   edx, 0xAA                       // undo the last two 'encryption' operations before the loop
-			sub   edx, 0x20
+		  xor    edx, 0xAA                       // undo the last two 'encryption' operations before the loop
+		  sub    edx, 0x20
 
-			d17 : rol dl, 1                       // inverse of the loop to encrypt, gets the final value (using the same counter)
-			dec   ecx                             // do { rol dl, 1
-			jnz   d17                             //   --ecx
-			                                      // } while(ecx > 0);
-			pop   ecx                             // everything gets restored
-			pop   esi
+		  d17  : rol dl, 1                       // inverse of the loop to encrypt, gets the final value (using the same counter)
+		  dec    ecx                             // do { rol dl, 1
+		  jnz    d17                             //   --ecx
+			                                     // } while(ecx > 0);
+		  pop    ecx                             // everything gets restored
+		  pop    esi
 
-			mov   esp, ebp
-			pop   ebp
+		  mov    esp, ebp
+		  pop    ebp
 
-			ret
+		  ret
 
 	}
 

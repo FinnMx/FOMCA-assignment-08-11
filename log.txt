@@ -557,3 +557,16 @@ Decrypted string = bigcun Hex = 62 69 67 63 75 6e
 
 -------------------------------------------------------------
 
+Date: 02/01/2022 Time: 17:42:30
+Name:                  Finn Moorhouse
+Encryption Routine ID: '17'
+Encryption Key:        'B
+
+Original string  = cunttt Hex = 63 75 6e 74 74 74 
+
+Encrypted string = {a¢[— Hex = 7b 61 11 a2 5b 97 
+
+Decrypted string = cunttt Hex = 63 75 6e 74 74 74 
+
+-------------------------------------------------------------
+
